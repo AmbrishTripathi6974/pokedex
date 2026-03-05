@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'pokemon_model.freezed.dart';
 part 'pokemon_model.g.dart';
 
+// Pokemon List Data
 @freezed
 abstract class PokemonListData with _$PokemonListData {
   const factory PokemonListData({
@@ -16,17 +17,17 @@ abstract class PokemonListData with _$PokemonListData {
       _$PokemonListDataFromJson(json);
 }
 
+// Pokemon List Result
 @freezed
 abstract class PokemonListResult with _$PokemonListResult {
-  const factory PokemonListResult({
-    String? name,
-    String? url,
-  }) = _PokemonListResult;
+  const factory PokemonListResult({String? name, String? url}) =
+      _PokemonListResult;
 
   factory PokemonListResult.fromJson(Map<String, dynamic> json) =>
       _$PokemonListResultFromJson(json);
 }
 
+// Pokemon
 @freezed
 abstract class Pokemon with _$Pokemon {
   const factory Pokemon({
@@ -45,6 +46,7 @@ abstract class Pokemon with _$Pokemon {
       _$PokemonFromJson(json);
 }
 
+// Abilities
 @freezed
 abstract class Abilities with _$Abilities {
   const factory Abilities({
@@ -57,27 +59,24 @@ abstract class Abilities with _$Abilities {
       _$AbilitiesFromJson(json);
 }
 
+// Moves
 @freezed
 abstract class Moves with _$Moves {
-  const factory Moves({
-    Ability? move,
-  }) = _Moves;
+  const factory Moves({Ability? move}) = _Moves;
 
-  factory Moves.fromJson(Map<String, dynamic> json) =>
-      _$MovesFromJson(json);
+  factory Moves.fromJson(Map<String, dynamic> json) => _$MovesFromJson(json);
 }
 
+// Ability
 @freezed
 abstract class Ability with _$Ability {
-  const factory Ability({
-    String? name,
-    String? url,
-  }) = _Ability;
+  const factory Ability({String? name, String? url}) = _Ability;
 
   factory Ability.fromJson(Map<String, dynamic> json) =>
       _$AbilityFromJson(json);
 }
 
+// Sprites
 @freezed
 abstract class Sprites with _$Sprites {
   const factory Sprites({
@@ -95,6 +94,7 @@ abstract class Sprites with _$Sprites {
       _$SpritesFromJson(json);
 }
 
+// Stats
 @freezed
 abstract class Stats with _$Stats {
   const factory Stats({
@@ -103,6 +103,5 @@ abstract class Stats with _$Stats {
     Ability? stat,
   }) = _Stats;
 
-  factory Stats.fromJson(Map<String, dynamic> json) =>
-      _$StatsFromJson(json);
+  factory Stats.fromJson(Map<String, dynamic> json) => _$StatsFromJson(json);
 }
