@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:poke_dex/controllers/home_screen_controller.dart';
+import 'package:poke_dex/data/screen_data.dart';
+
+final homeScreenControllerProvider =
+    NotifierProvider<HomeScreenController, HomePageData>(
+  HomeScreenController.new,
+);
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
