@@ -1,7 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:poke_dex/data/screen_data.dart';
 
-class HomeScreenController extends Notifier<HomePageData> {
-  @override
-  HomePageData build() => HomePageData.initial();
+class HomeScreenController extends StateNotifier<HomePageData> {
+  HomeScreenController(super.state);
 }

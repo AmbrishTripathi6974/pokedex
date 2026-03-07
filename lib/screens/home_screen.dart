@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_riverpod/legacy.dart';
 import 'package:poke_dex/controllers/home_screen_controller.dart';
 import 'package:poke_dex/data/screen_data.dart';
 
 final homeScreenControllerProvider =
-    NotifierProvider<HomeScreenController, HomePageData>(
-  HomeScreenController.new,
-);
+    StateNotifierProvider<HomeScreenController, HomePageData>((ref) {
+      return HomeScreenController(HomePageData.initial());
+    });
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  ConsumerState<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends ConsumerState<HomeScreen> {
+  late HomeScreenController _homeScreenController;
+  late HomePageData _homePageData;
+
   @override
   Widget build(BuildContext context) {
+    _homeScreenController = ref.watch(homeScreenControllerProvider.notifier);
+    _homePageData = ref.watch(homeScreenControllerProvider);
+
     return Scaffold(body: _buildUI(context));
   }
 
