@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:poke_dex/controllers/home_screen_controller.dart';
 import 'package:poke_dex/data/models/pokemon_model.dart';
 import 'package:poke_dex/data/screen_data.dart';
+import 'package:poke_dex/providers/pokemon_data_providers.dart';
+import 'package:poke_dex/widgets/pokemon_card.dart';
 import 'package:poke_dex/widgets/pokemon_list_tile.dart';
 
 final homeScreenControllerProvider =
@@ -22,6 +24,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   final ScrollController _allPokemonScrollController = ScrollController();
   late HomeScreenController _homeScreenController;
   late HomePageData _homePageData;
+
+  late List<String> _favoritePokemons;
 
   @override
   void initState() {
@@ -48,6 +52,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Widget build(BuildContext context) {
     _homeScreenController = ref.watch(homeScreenControllerProvider.notifier);
     _homePageData = ref.watch(homeScreenControllerProvider);
+    _favoritePokemons = ref.watch(favoritePokemonsProvider);
 
     return Scaffold(body: _buildUI(context));
   }
@@ -64,9 +69,50 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: [_allPokemonList(context)],
+            children: [
+              _favoritePokemonsList(context),
+              _allPokemonList(context),
+            ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _favoritePokemonsList(BuildContext context) {
+    return SizedBox(
+      width: MediaQuery.sizeOf(context).width,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Favorites", style: TextStyle(fontSize: 25)),
+          SizedBox(
+            height: MediaQuery.sizeOf(context).height * 0.5,
+            width: MediaQuery.sizeOf(context).width,
+            child: Column(
+              children: [
+                if (_favoritePokemons.isNotEmpty)
+                  SizedBox(
+                    height: MediaQuery.sizeOf(context).height * 0.48,
+                    child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                          ),
+                      itemCount: _favoritePokemons.length,
+                      itemBuilder: (context, index) {
+                        String pokemonURL = _favoritePokemons[index];
+                        return PokemonCard(pokemonURL: pokemonURL);
+                      },
+                    ),
+                  ),
+                if (_favoritePokemons.isEmpty)
+                  const Text("No favorite pokemons yet! :("),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
