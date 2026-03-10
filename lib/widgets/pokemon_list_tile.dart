@@ -3,7 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:poke_dex/data/models/pokemon_model.dart';
 import 'package:poke_dex/providers/pokemon_data_providers.dart';
 import 'package:skeletonizer/skeletonizer.dart';
+import 'pokemon_stats_card.dart';
 
+// ignore: must_be_immutable
 class PokemonListTile extends ConsumerWidget {
   final String pokemonURL;
 
@@ -33,33 +35,45 @@ class PokemonListTile extends ConsumerWidget {
   Widget _tile(BuildContext context, bool isLoading, Pokemon? pokemon) {
     return Skeletonizer(
       enabled: isLoading,
-      child: ListTile(
-        leading: pokemon != null
-            ? CircleAvatar(
-                backgroundImage: NetworkImage(pokemon.sprites!.frontDefault!),
-              )
-            : CircleAvatar(),
-        title: Text(
-          pokemon != null
-              ? pokemon.name!.toUpperCase()
-              : "Pokemon name not present",
-        ),
+      child: GestureDetector(
+        onTap: () {
+          if (!isLoading) {
+            showDialog(
+              context: context,
+              builder: (_) {
+                return PokemonStatsCard(pokemonURL: pokemonURL);
+              },
+            );
+          }
+        },
+        child: ListTile(
+          leading: pokemon != null
+              ? CircleAvatar(
+                  backgroundImage: NetworkImage(pokemon.sprites!.frontDefault!),
+                )
+              : CircleAvatar(),
+          title: Text(
+            pokemon != null
+                ? pokemon.name!.toUpperCase()
+                : "Pokemon name not present",
+          ),
 
-        subtitle: Text("Has ${pokemon?.moves?.length.toString() ?? 0} moves"),
+          subtitle: Text("Has ${pokemon?.moves?.length.toString() ?? 0} moves"),
 
-        trailing: IconButton(
-          onPressed: () {
-            if (_favoritePokemons.contains(pokemonURL)) {
-              _favoritePokemonsProvider.removeFavoritePokemon(pokemonURL);
-            } else {
-              _favoritePokemonsProvider.addFavoritePokemon(pokemonURL);
-            }
-          },
-          icon: Icon(
-            _favoritePokemons.contains(pokemonURL)
-                ? Icons.favorite_rounded
-                : Icons.favorite_border_rounded,
-            color: Colors.red,
+          trailing: IconButton(
+            onPressed: () {
+              if (_favoritePokemons.contains(pokemonURL)) {
+                _favoritePokemonsProvider.removeFavoritePokemon(pokemonURL);
+              } else {
+                _favoritePokemonsProvider.addFavoritePokemon(pokemonURL);
+              }
+            },
+            icon: Icon(
+              _favoritePokemons.contains(pokemonURL)
+                  ? Icons.favorite_rounded
+                  : Icons.favorite_border_rounded,
+              color: Colors.red,
+            ),
           ),
         ),
       ),
