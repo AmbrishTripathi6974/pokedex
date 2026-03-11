@@ -58,22 +58,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget _buildUI(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.02,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _favoritePokemonsList(context),
-              _allPokemonList(context),
-            ],
-          ),
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.02),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _favoritePokemonsList(context),
+            Expanded(child: _allPokemonList(context)),
+          ],
         ),
       ),
     );
@@ -119,30 +115,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Widget _allPokemonList(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'All Pokemons',
-            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const Text(
+          'All Pokemons',
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+        Expanded(
+          child: ListView.builder(
+            controller: _allPokemonScrollController,
+            itemCount: _homePageData.data?.results!.length ?? 0,
+            itemBuilder: (context, index) {
+              PokemonListResult pokemon = _homePageData.data!.results![index];
+              return PokemonListTile(pokemonURL: pokemon.url!);
+            },
           ),
-
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.6,
-            child: ListView.builder(
-              controller: _allPokemonScrollController,
-              itemCount: _homePageData.data?.results!.length ?? 0,
-              itemBuilder: (context, index) {
-                PokemonListResult pokemon = _homePageData.data!.results![index];
-                return PokemonListTile(pokemonURL: pokemon.url!);
-              },
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

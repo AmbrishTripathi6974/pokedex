@@ -99,7 +99,7 @@ class PokemonCard extends ConsumerWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    '${pokemon!.moves!.length} Moves',
+                    "${pokemon?.moves?.length} Moves",
                     style: TextStyle(color: Colors.white),
                   ),
 
