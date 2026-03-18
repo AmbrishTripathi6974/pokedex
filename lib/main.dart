@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_it/get_it.dart';
-import 'package:poke_dex/screens/home_screen.dart';
+import 'package:poke_dex/Riverpod_Tutorial/screens/home_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:poke_dex/services/database_service.dart';
-import 'package:poke_dex/services/http_service.dart';
+import 'package:poke_dex/Riverpod_Tutorial/services/database_service.dart';
+import 'package:poke_dex/Riverpod_Tutorial/services/http_service.dart';
 
 void main() async {
   await _setupServices();

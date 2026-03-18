@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/legacy.dart';
 import 'package:get_it/get_it.dart';
-import 'package:poke_dex/data/models/pokemon_model.dart';
-import 'package:poke_dex/data/screen_data.dart';
-import 'package:poke_dex/services/http_service.dart';
+import 'package:poke_dex/Riverpod_Tutorial/data/models/pokemon_model.dart';
+import 'package:poke_dex/Riverpod_Tutorial/data/screen_data.dart';
+import 'package:poke_dex/Riverpod_Tutorial/services/http_service.dart';
 
 class HomeScreenController extends StateNotifier<HomePageData> {
   final GetIt _getIt = GetIt.instance;

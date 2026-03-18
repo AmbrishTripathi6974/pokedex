@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:poke_dex/data/models/pokemon_model.dart';
-import 'package:poke_dex/services/database_service.dart';
-import 'package:poke_dex/services/http_service.dart';
+import 'package:poke_dex/Riverpod_Tutorial/data/models/pokemon_model.dart';
+import 'package:poke_dex/Riverpod_Tutorial/services/database_service.dart';
+import 'package:poke_dex/Riverpod_Tutorial/services/http_service.dart';
 import 'package:riverpod/legacy.dart';
 import 'package:riverpod/riverpod.dart';
 

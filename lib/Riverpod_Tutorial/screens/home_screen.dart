@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_riverpod/legacy.dart';
-import 'package:poke_dex/controllers/home_screen_controller.dart';
-import 'package:poke_dex/data/models/pokemon_model.dart';
-import 'package:poke_dex/data/screen_data.dart';
-import 'package:poke_dex/providers/pokemon_data_providers.dart';
-import 'package:poke_dex/widgets/pokemon_card.dart';
-import 'package:poke_dex/widgets/pokemon_list_tile.dart';
+import 'package:poke_dex/Riverpod_Tutorial/controllers/home_screen_controller.dart';
+import 'package:poke_dex/Riverpod_Tutorial/data/models/pokemon_model.dart';
+import 'package:poke_dex/Riverpod_Tutorial/data/screen_data.dart';
+import 'package:poke_dex/Riverpod_Tutorial/providers/pokemon_data_providers.dart';
+import 'package:poke_dex/Riverpod_Tutorial/widgets/pokemon_card.dart';
+import 'package:poke_dex/Riverpod_Tutorial/widgets/pokemon_list_tile.dart';
 
 final homeScreenControllerProvider =
     StateNotifierProvider<HomeScreenController, HomePageData>((ref) {

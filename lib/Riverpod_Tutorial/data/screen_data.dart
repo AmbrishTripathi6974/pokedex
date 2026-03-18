@@ -1,4 +1,4 @@
-import 'package:poke_dex/data/models/pokemon_model.dart';
+import 'package:poke_dex/Riverpod_Tutorial/data/models/pokemon_model.dart';
 
 class HomePageData {
   PokemonListData? data;

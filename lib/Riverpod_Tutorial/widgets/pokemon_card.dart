@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:poke_dex/data/models/pokemon_model.dart';
-import 'package:poke_dex/providers/pokemon_data_providers.dart';
-import 'package:poke_dex/widgets/pokemon_stats_card.dart';
+import 'package:poke_dex/Riverpod_Tutorial/data/models/pokemon_model.dart';
+import 'package:poke_dex/Riverpod_Tutorial/providers/pokemon_data_providers.dart';
+import 'package:poke_dex/Riverpod_Tutorial/widgets/pokemon_stats_card.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 // ignore: must_be_immutable
