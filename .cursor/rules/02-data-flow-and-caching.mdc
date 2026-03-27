@@ -1,0 +1,24 @@
+---
+description: Data flow, cache-first behavior, and cache policies
+globs: **/*.dart
+alwaysApply: true
+---
+
+# Data Flow Contract
+- `UI -> Provider -> Logic -> Repository -> Local (Isar) <-> Remote (API)`
+- Isar is the source of truth for runtime data.
+
+# Cache-first Rules
+- Default behavior: return local/Isar data immediately when available.
+- Refresh remote in the background and update local so UI updates via Isar.
+
+# Cache Policies
+- Implement cache policies with these semantics:
+  - `cacheFirst`: local first, then (if needed) refresh remote
+  - `networkFirst`: attempt remote first, fallback to local on failure
+  - `cacheOnly`: do not call remote
+  - `networkOnly`: do not use local (except as required by runtime constraints)
+
+# Invalidation
+- Invalidate/refresh cached data when remote truth changes or when policy requires it.
+

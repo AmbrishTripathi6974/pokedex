@@ -1,0 +1,23 @@
+---
+description: Core architecture and coding standards (Flutter + Riverpod + Clean Architecture)
+globs: **/*.dart
+alwaysApply: true
+---
+
+# Core Architecture
+- Follow feature-first folder structure: `features/{feature}/{models,datasource,repository,logic,providers,ui}/`
+- Keep business logic out of UI. UI should delegate to Providers/Logic.
+- Prefer `Notifier` / `AsyncNotifier` over ad-hoc state.
+- Repositories own data orchestration and enforce cache policy behavior.
+
+# Services
+- Core services must be singletons under `core/services/` (use service locator).
+- Put platform-agnostic logic in repositories/logic; use services for cross-feature concerns.
+
+# Isolates
+- Use isolates only for:
+  - large JSON parsing
+  - heavy filtering/search
+  - heavy sync processing
+- Do NOT use isolates for simple async/network calls or UI logic.
+

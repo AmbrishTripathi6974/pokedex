@@ -1,0 +1,18 @@
+---
+description: Isar-first writes and offline sync behavior
+globs: **/*.dart
+alwaysApply: true
+---
+
+# Isar-First
+- Write to Isar first for instant UI updates.
+- Queue remote sync tasks after successful local writes.
+
+# Offline + Sync
+- Use retry for remote operations.
+- Use conflict resolution when syncing (default: last-write-wins).
+
+# Source of Truth
+- App runtime should read from Isar (local cache).
+- Remote calls are for refreshing data or syncing queued changes.
+

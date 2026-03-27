@@ -1,0 +1,15 @@
+---
+description: Centralized error handling and observability
+globs: **/*.dart
+alwaysApply: true
+---
+
+# Error Handling
+- Centralize failure handling (do not scatter try/catch across UI).
+- Log all errors to Crashlytics.
+- Use analytics for important user-facing events and failures.
+
+# UX Safety
+- Never break UI due to exceptions.
+- Prefer returning safe states (empty/loading/error) via Providers rather than throwing out of UI.
+

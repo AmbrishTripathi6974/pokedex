@@ -1,0 +1,14 @@
+---
+description: Performance best practices (pagination, indexes, rebuild minimization)
+globs: **/*.dart
+alwaysApply: true
+---
+
+# Performance
+- Use pagination/lazy loading for lists and large queries.
+- Avoid unnecessary rebuilds (keep providers scoped and immutable where possible).
+
+# Isar
+- Use Isar indexes for fast queries.
+- Prefer query shapes that match indexes.
+
